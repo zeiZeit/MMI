@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="tp_line_width_section">18</integer>
+    <integer name="tp_line_height_section">28</integer>
+    <string-array name="config_submenu_all_keys" translatable="false">
+        <item>"emode_pac_flag_battery"</item>
+        <item>"emode_pac_flag_lcd"</item>
+        <item>"emode_pac_flag_backlight"</item>
+        <item>"emode_pac_flag_vibrator"</item>
+        <item>"emode_pac_flag_led"</item>
+        <item>"emode_pac_flag_sdcard"</item>
+        <item>"emode_pac_flag_sim1"</item>
+        <item>"emode_pac_flag_memory"</item>
+        <item>"emode_pac_flag_storage"</item>
+        <item>"emode_pac_flag_key"</item>
+        <item>"emode_pac_flag_bt"</item>
+        <item>"emode_pac_flag_wifi"</item>
+        <item>"emode_pac_flag_gps"</item>
+        <item>"emode_pac_flag_tp"</item>
+        <item>"emode_pac_flag_fm"</item>
+        <item>"emode_pac_flag_audioloop"</item>
+        <!-- <item>"emode_pac_flag_cali"</item> -->
+        <item>"emode_pac_flag_back_camera"</item>
+        <!-- <item>"emode_pac_flag_near_zoom"</item> -->
+        <!-- <item>"emode_pac_flag_far_zoom"</item> -->
+        <item>"emode_pac_flag_front_camera"</item>
+        <item>"emode_pac_flag_gsensor"</item>
+        <!-- <item>"emode_pac_flag_compass"</item> -->
+        <item>"emode_pac_flag_proximity"</item>
+        <item>"emode_pac_flag_light"</item>
+        <item>"emode_pac_flag_flashlight"</item>
+        <item>"emode_pac_flag_finger"</item>
+        <item>"emode_pac_flag_otg"</item>
+        <!-- <item>"emode_pac_flag_gyoscope"</item> -->
+    </string-array>
+    <bool name="hasTpKey">false</bool>
+    <bool name="signalHomeKey">true</bool>
+    <integer name="config_tp_test_rect_section_width">18</integer>
+    <integer name="config_tp_test_rect_section_height">28</integer>
+    <bool name="config_tp_test_has_slash">false</bool>
+
+</resources>
