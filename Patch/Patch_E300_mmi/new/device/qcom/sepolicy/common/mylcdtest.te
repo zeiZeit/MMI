@@ -1,0 +1,7 @@
+allow bootanim self:capability { dac_override };
+allow bootanim wind_test_prop:file r_file_perms;
+allow bootanim system_data_file:dir { search read open write add_name};
+allow bootanim system_data_file:fifo_file { create open write read};
+
+
+

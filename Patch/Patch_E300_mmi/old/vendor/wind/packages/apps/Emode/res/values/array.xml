@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?><!-- Copyright (C) 2010 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources>
+    <string-array name="product_station_names">
+        <item>"GPS coupling test"</item>
+        <item>"BT coupling test"</item>
+        <item>"PAC CHECK"</item>
+        <item>"SMT CHECK"</item>
+        <item>"IMEI"</item>
+        <item>"WLAN coupling test"</item>
+        <item>"Main antenna coupling test"</item>
+        <item>"PAC MMI"</item>
+        <item>"SMT MMI"</item>
+        <item>"calibration"</item>
+        <item>"FT"</item>
+        <item>"Sale count"</item>
+        <item>"PAC MMI2"</item>
+    </string-array>
+
+    <string-array name="flash_names" translatable="false">
+        <item>"MT29TZZZ7D7EKKBT_107W_97V"</item>
+        <item>"H9TQ52ACLTMCUR_KUM"</item>
+        <item>"KMRC10014M_B809"</item>
+        <item>"KMRX1000BM_B614"</item>
+        <item>"KMRC1000BM_B809"</item>
+        <item>"KMQX10013M_B419"</item>
+        <item>"KMGX6001BM_B514"</item>
+        <item>"KMQE10013M_B318"</item>
+        <item>"KMQ310013M_B419"</item>
+        <item>"H9TQ17ABJTACUR_KUM"</item>
+        <item>"H9TQ17ABJTBCUR_KUM"</item>
+        <item>"KMQE60013M_B318"</item>
+        <item>"H9TQ26ADFTBCUR_KUM"</item>
+		<item>"KMRX10014M_B614"</item>
+		<item>"MT29TZZZ5D6EKFRL_107W_96R"</item>
+    </string-array>
+
+    <string-array name="flash_sizes" translatable="false">
+        <item>"32"</item>
+        <item>"64"</item>
+        <item>"64"</item>
+        <item>"32"</item>
+        <item>"64"</item>
+        <item>"32"</item>
+        <item>"32"</item>
+        <item>"16"</item>
+        <item>"16"</item>
+        <item>"16"</item>
+        <item>"16"</item>
+        <item>"16"</item>
+        <item>"32"</item>
+		<item>"32"</item>
+		  <item>"16"</item>
+    </string-array>
+
+    <string-array name="flash_cids" translatable="false">
+        <item>"13014e51334a393756"</item>
+        <item>"90014a484347386134"</item>
+        <item>"150100524331344d42"</item>
+        <item>"150100525831424d42"</item>
+        <item>"150100524331424d42"</item>
+        <item>"150100515831334d42"</item>
+        <item>"150100475836424d42"</item>
+        <item>"150100514531334d42"</item>
+        <item>"150100513331334d42"</item>
+        <item>"90014a484147346132"</item>
+        <item>"484a01906134474129"</item>
+        <item>"150100514536334d42"</item>
+        <item>"90014a484247346132"</item>
+		<item>"150100525831344d42"</item>
+       <item>"13014e51334a393652"</item>
+    </string-array>
+
+    <string-array name="config_test_keys">
+        <item>3</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>79</item>
+    </string-array>
+
+    <string-array name="testcases" translatable="false">     
+        <!--  item definition: -->
+        <!--  code:type:en_name:cn_name:error_code:activity -->
+
+        <!--  type definition: -->
+        <!--  1 or 0001, phone(整机测试项) -->
+        <!--  2 or 0010, board(主板测试项) -->
+        <!--  4 or 0100, other(其它测试项) -->
+        <!--  8 or 1000, custom(定制测试项) -->
+        <!--  16 or 10000, (MMI2) -->
+
+
+        <item>"*983*31#:3:LCD Test:显示屏测试:1602:LCDTest"</item>
+        <item>"*983*26#:3:Vibrator and Backlight Test:震动与背光测试:1603:VibratorBacklightTest"</item>
+		<item>"*983*111#:3:FingerPrint Test:指纹模组测试:1:FingerPrintTest"</item>
+		<item>"*983*333#:3:Factory TP Test:Tp工厂测试:1:TpFactoryTest"</item>
+		<item>"*#19#:3:Touchscreen Test:触摸屏测试:1611:TouchScreenTest"</item>
+		<item>"*983*25#:3:Battery Test:电池信息:1601:BatteryTest"</item>
+        <item>"*983*86#:3:LED Test:LED灯测试:1604:LedTest"</item>
+        <item>"*983*234#:3:SDCard Test:SD卡测试:1605:SDCardTest"</item>
+        <item>"*983*235#:3:Ring Test:铃音测试:1620:RingTest"</item>
+        <item>"*983*21#:19:Audio Loop Test:音频回路测试:1606:HeadsetAndAudioLoopTest"</item>
+        <item>"*983*636#:3:Memory Test:内存与内部SD卡测试:1607:MemoryTest"</item>
+        <item>"*983*07*02#:3:Key Test:按键测试:1608:KeyTest"</item>
+        <item>"*#09***#:19:BT Test:蓝牙测试:1609:BTTest"</item>
+        <item>"*983*477#:3:GPS Test:GPS测试:1610:GPSTest"</item>
+        <item>"*983*36#:3:FM Test:FM测试:1612:FMTest"</item>
+        <item>"*1988#:2:All Sensor Test:传感器测试:1:SensorAllTest"</item>
+        <item>"*983*9434622#:19:Wi-Fi Test:WLAN测试:1613:WifiTest"</item>
+        <item>"*983*224#:3:Flash Light Test:闪光灯测试:1614:FlashTest"</item>
+        <item>"*983*679#:19:Front Camera Test:前摄像头测试:1615:FrontCameraTest"</item>
+        <item>"*983*474#:19:Back SubCamera Test:后副摄像头测试:1621:BackSubCameraTest"</item>
+        <item>"*983*473#:19:Back MainCamera Test:后主摄像头测试:1616:BackMainCameraTest"</item>
+        <item>"*1986#:1:GSensor Test:重力传感器测试:1617:GSensorTest"</item>
+        <item>"*1987#:1:MSensor Test:地磁传感器测试:1618:MSensorTest"</item>
+        <item>"*983*728#:1:Gyroscope Sensor Test:陀螺仪传感器测试:1:GyroscopeSensorTest"</item>
+        <item>"*983*239#:1:Light and Proximity Sensor
+            Test:接近与光感测试:1619:LightAndProximitySensorTest"
+        </item>
+        <item>"*983*6479#:3:Hall Sensor Test:霍尔传感器测试:1:HallSensorTest"</item>
+        <item>"*983*1275#:4:Version Info:版本信息:1:VersionInfo"</item>
+        <item>"*983*92#:4:Phase Check:站位信息:1:PhaseCheck"</item>
+        <item>"*983*468*3#:4:Hardware Info:硬件信息:1:HardwareInfo"</item>
+        <item>"*983*3640*01#:8:IMSI:IMSI:1:IMSI"</item>
+        <item>"*#9999#:8:Hardware Version:硬件版本号:1:HardwareVersion"</item>
+        <item>"*#*#9463*22#*#*:3:Headset Hook Test:耳机Hook键测试:1:HeadsetHookKeyTest"</item>
+        <item>"*983*247#:8:Receiver Ring Test:听筒铃声测试:1:ReceiverRingTest"</item>
+        <item>"*983*821#:8:Keep Screen On:保持亮屏:1:KeepScreenOn"</item>
+        <item>"*983*822#:8:UAProfile:UAProfile:1:UAProfile"</item>
+        <item>"*983*547#:8:Proximity Sensor Stress Test:接近传感器压力测试:1:ProximitySensorStressTest"</item>
+        <item>"*983*647#:8:Mic and Rec Stress Test:话筒听筒压力测试:1:MicRecStressTest"</item>
+        <item>"*#886#:8:BatteryCheck:电池检测:1:BatteryCheck"</item>
+        <item>"*983*937#:8:Vibrator Stress Test:马达震动压力测试:1:VibratorStressTest"</item>
+        <item>"*983*55#:3:OTG Test:OTG测试:1:OtgTest"</item>
+        <item>"*983*66#:3:SIM Test:SIM卡测试:1:SimState"</item>
+        <item>"*983*667#:3:DTV Test:DTV测试:1:DtvModuleTest"</item>
+        <item>"*983*77#:4:QRCode Product:生成二维码:1:QrCodeProduct"</item>
+    </string-array>
+
+</resources>

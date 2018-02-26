@@ -1,0 +1,26 @@
+# service mykeytest in init.rc
+type mykeytest, domain;
+type mykeytest_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(mykeytest)
+allow mykeytest self:capability dac_override;
+#allow mykeytest shell_exec:file rx_file_perms;
+#allow mykeytest system_file:file rx_file_perms;
+#allow mykeytest toolbox_exec:file rx_file_perms;
+#allow mykeytest block_device:dir search;
+#allow mykeytest boot_block_device:blk_file r_file_perms;
+#allow mykeytest proc_ged:file r_file_perms;
+allow mykeytest input_device:dir { search read open };
+allow mykeytest input_device:chr_file {read write ioctl open};
+allow mykeytest property_socket:sock_file write;
+allow mykeytest wind_testval_prop:property_service { set };
+allow mykeytest wind_testval_prop:file r_file_perms;
+allow wind_testval_prop system_app:file { read open getattr };
+allow system_app wind_testval_prop:file { read open getattr };
+allow system_app wind_testval_prop:property_service set;
+allow mykeytest init:unix_stream_socket connectto;
+allow mykeytest sysfs:file w_file_perms;
+allow mykeytest sysfs_leds:dir { search read open };
+allow mykeytest sysfs_leds:lnk_file read ;
+
+
+

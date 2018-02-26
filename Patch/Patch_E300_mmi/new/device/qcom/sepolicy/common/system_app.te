@@ -1,0 +1,344 @@
+# Copyright (c) 2015-2016 Dolby Laboratories, Inc. All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are
+# met:
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above
+#       copyright notice, this list of conditions and the following
+#       disclaimer in the documentation and/or other materials provided
+#       with the distribution.
+#
+# THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
+# WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS
+# BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+# BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+# OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+# IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+# fm_radio app needes  open read write on fm_radio_device
+allow system_app fm_radio_device:chr_file r_file_perms;
+r_dir_file(system_app, fm_data_file);
+r_dir_file(system_app, bluetooth_data_file);
+r_dir_file(system_app, bt_firmware_file);
+
+allow system_app {
+    ctl_default_prop
+    fm_prop
+    usf_prop
+}:property_service set;
+
+allow system_app {
+    atfwd_service
+    dun_service
+    # access to color service SDK
+    color_service
+    qfp_proxy_service
+}:service_manager add;
+
+# access to mm-pp-daemon
+#unix_socket_connect(system_app, pps, mm-pp-daemon)
+
+userdebug_or_eng(`
+  allow system_app qti_debugfs:file r_file_perms;
+  allow system_app su:unix_dgram_socket sendto;
+  allow system_app persist_file:dir r_dir_perms;
+  allow system_app sensors_persist_file:dir r_dir_perms;
+  allow system_app sensors_persist_file:file rw_file_perms;
+  # access to firmware file
+  r_dir_file(system_app, firmware_file);
+
+  # Access to tombstone segfaults
+  allow system_app tombstone_data_file:dir r_dir_perms;
+  allow system_app tombstone_data_file:file r_file_perms;
+  diag_use(system_app)
+
+  # allow to read ssr ramdump
+  allow system_app ssr_ramdump_data_file:dir r_dir_perms;
+  allow system_app ssr_ramdump_data_file:file r_file_perms;
+
+  # allow system app to read crash_prop
+  allow system_app crash_prop:file r_file_perms;
+')
+
+allow system_app cnd_data_file:dir w_dir_perms;
+allow system_app cnd_data_file:file create_file_perms;
+allow system_app bluetooth:unix_stream_socket ioctl;
+
+# access to tee domain
+#allow system_app tee:unix_dgram_socket sendto;
+
+# system app to access DTS data files
+r_dir_file(system_app, dts_data_file)
+
+# usf (ultrasound) apps need following permissions
+#allow system_app usf:unix_stream_socket connectto;
+allow system_app usf_data_file:sock_file write;
+allow system_app usf_data_file:dir rw_dir_perms;
+allow system_app usf_data_file:{ file lnk_file } create_file_perms;
+
+# Allow hbtp hal Service to be found
+hal_client_domain(system_app, hal_hbtp)
+
+#access to wifi_ftmd
+allow system_app wififtmd_prop:property_service set;
+#unix_socket_send(system_app, wififtmd, wifi_ftmd)
+
+# allow system_app to interact with dtseagleservice
+binder_call(system_app, dtseagleservice)
+
+# allow system_app to interact with fido daemon
+binder_call(system_app, fidodaemon)
+
+# allow system_app to interact with secota daemon
+binder_call(system_app, secotad)
+
+#allow access to qfp-daemon
+allow system_app qfp-daemon_data_file:dir create_dir_perms;
+allow system_app qfp-daemon_data_file:file create_file_perms;
+binder_call(system_app, qfp-daemon)
+hal_client_domain(system_app, hal_fingerprint)
+
+#allow access to qvop-daemon
+hal_client_domain(system_app, hal_voiceprint)
+
+# allow system_app to interact with fido daemon
+binder_call(system_app, fidodaemon)
+
+# allow system_app to interact with esepmdaemon
+binder_call(system_app, esepmdaemon)
+
+# allow system_app to interact with seemp health daemon
+binder_call(system_app, seemp_health_daemon)
+
+# allow system_app to interact with display color hal
+hal_client_domain(system_app, hal_display_color)
+
+# allow system_app to interact with display postproc hal
+hal_client_domain(system_app, hal_display_postproc)
+
+# allow system_app to interact with light hal
+hal_client_domain(system_app, hal_light);
+
+#allow access to RIDL
+allow system_app RIDL_data_file:dir rw_dir_perms;
+allow system_app RIDL_data_file:file create_file_perms;
+allow system_app RIDL_data_file:lnk_file r_file_perms;
+allow system_app RIDL_socket:dir r_dir_perms;
+#unix_socket_connect(system_app, RIDL, RIDL)
+#allow system_app RIDL_socket:sock_file r_file_perms;
+
+# Allow access to qti_logkit
+allow system_app qti_logkit_priv_data_file:dir create_dir_perms;
+allow system_app qti_logkit_priv_data_file:file create_file_perms;
+allow system_app qti_logkit_priv_socket:dir r_dir_perms;
+#unix_socket_connect(system_app, qti_logkit_priv, qti_logkit)
+#allow system_app qti_logkit_priv_socket:sock_file r_file_perms;
+
+# iwconfig
+allow system_app wcnss_service_exec:file rx_file_perms;
+
+# bugreport
+allow system_app ctl_dumpstate_prop:property_service set;
+unix_socket_connect(system_app, dumpstate, dumpstate)
+
+# allow gba auth service to add itself as system service
+allow system_app gba_auth_service:service_manager add;
+
+# allow gba auth service to find itself
+allow system_app gba_auth_service:service_manager find;
+
+# allow access to system_app for wbc_service
+allow system_app wbc_service:service_manager add;
+allow system_app self:netlink_kobject_uevent_socket { read bind setopt create };
+
+# allow system_app to interact with mdtp daemon
+binder_call(system_app, mdtpdaemon)
+
+# allow access to system_app for audio pp files
+r_dir_file(system_app, audio_pp_data_file);
+
+# allow access to system app for radio files
+allow system_app radio_data_file:dir rw_dir_perms;
+allow system_app radio_data_file:file create_file_perms;
+
+# DOLBY_START
+set_prop(system_app, dolby_prop)
+# DOLBY_END
+
+# allow system_app to access netd
+unix_socket_connect(system_app, netd, netd)
+
+allow system_app persist_file:dir rw_dir_perms;
+allow system_app persist_misc_file:dir rw_dir_perms;
+allow system_app persist_misc_file:file create_file_perms;
+
+# required for FM App to connectto wcnss_filter sockets
+# serial device ttyHS0 (transport layer for FM)
+allow system_app serial_device:chr_file rw_file_perms;
+set_prop(system_app, bluetooth_prop)
+# access unix sockets for fm application
+unix_socket_connect(system_app,bluetooth, bluetooth)
+# access  wcnss_filter from fm app
+#allow system_app wcnss_filter:unix_stream_socket connectto;
+
+# ANR
+allow system_app anr_data_file:dir r_dir_perms;
+allow system_app anr_data_file:file r_file_perms;
+# detect /data/anr directory is created
+allow system_app system_data_file:dir read;
+
+# allow access to ims helper
+#unix_socket_connect(system_app, ims, ims)
+
+# allow system app to interact with hal_qteeconnector
+hal_client_domain(system_app, hal_qteeconnector);
+
+#allow system_app access boot mode switch
+set_prop(system_app, boot_mode_prop);
+
+# allow access to cache recovery for LK3
+allow system_app cache_file:dir create_dir_perms;
+allow system_app cache_file:file create_file_perms;
+allow system_app cache_recovery_file:dir rw_dir_perms;
+allow system_app cache_recovery_file:file create_file_perms;
+
+#Allow system app access mmi_data_file
+allow system_app mmi_data_file:dir create_dir_perms;
+allow system_app mmi_data_file:file create_file_perms;
+
+# update engine
+binder_call( system_app, update_engine )
+
+hal_client_domain(system_app, hal_perf)
+hal_client_domain(system_app, hal_iop)
+
+#allow system_app access ioctl
+allowxperm system_app self:socket ioctl msm_sock_ipc_ioctls;
+allow system_app self:socket ioctl;
+
+#allow system app to interact with the esepowermanager
+hal_client_domain(system_app, hal_esepowermanager)
+allow system_app fm_prop:file r_file_perms;
+
+allow system_app vendor_radio_data_file:dir rw_dir_perms;
+allow system_app vendor_radio_data_file:file create_file_perms;
+
+#secureUI
+hal_client_domain(system_app, hal_qdutils_disp);
+hal_client_domain(system_app, hal_tui_comm);
+
+allow system_app graphics_device:chr_file r_file_perms;
+allow system_app graphics_device:dir r_dir_perms;
+
+hal_client_domain(system_app, hal_sensorscalibrate_qti);
+
+##add for leadcore fingerprint socket connection
+#allow system_app fpsensor_data_file:sock_file { write };
+#allow system_app fpsensor_data_file:dir { search };
+#allow system_app fp_ext_svc2_service:service_manager {add};
+#add_service(system_app, fp_ext_svc2_service);
+
+#type fpsensorextension_exec, exec_type, file_type;
+#type fpsensorextension, domain;
+#init_daemon_domain(fpsensorextension)
+#allow fpsensorextension hal_fingerprint_default:unix_stream_socket connectto;
+#type_transition system_app hal_fingerprint_default:unix_stream_socket fpsensorextension;
+
+allow system_app fpsensor_test_file:sock_file { write };
+allow system_app fpsensor_test_file:dir { search };
+allow system_app hal_fingerprint_default:fd {use};
+
+
+#qiancheng@wind-mobi.com 20171028 add -s
+allow system_app vendor_file:file { execute read open ioctl getattr};
+allow system_app mafinger_device:chr_file {read write ioctl open getattr execute};
+#qiancheng@wind-mobi.com 20171028 add -e
+
+#xuyi@wind-mobi.com 20171107 add for tp test begin
+allow system_app proc_gmnode:file {read write open};
+allow system_app ro_memsize:file {read open getattr};
+allow system_app ro_memsize:property_service {set};
+#allow system_app apk_data_file:dir {write};
+allow system_app qti_debugfs:dir {search};
+allow system_app ro_deviceid_prop:file {open getattr};
+#allow system_app serialno_prop:file {read getattr open};
+#xuyi@wind-mobi.com 20171107 add for tp test end
+
+# xiejiaming@wind-mobi.com add feature 4444 20171030 s
+allow system_app persist_runtime_prop:property_service { set };
+allow system_app btmac_prop:property_service { set };
+allow system_app wifimac_prop:property_service { set };
+allow system_app asus_storage_health_prop:property_service { set };
+allow system_app sys_chargestate_file:file rw_file_perms;
+allow system_app proc_stat:file { read open getattr write };
+allow system_app qmesa_start_prop:property_service { set };
+allow system_app qmesa_stop_prop:property_service { set };
+allow system_app vendor_file:file { execute_no_trans };
+# xiejiaming@wind-mobi.com add feature 4444 20171030 e
+
+# qiancheng@wind-mobi.com 20171213 add -s
+allow system_app sys_emmc_health_prop:property_service { set };
+allow system_app asus_storage_health_prop:file { read open getattr };
+allow system_app sys_emmc_health_prop:file { read open getattr };
+allow system_app atd_prop:property_service { set };
+allow system_app atd_prop:file { read open getattr };
+# qiancheng@wind-mobi.com 20171213 add -e
+
+#wangyan@wind-mobi.com add Feature #4912 20171129 start
+allow system_app proc_gestures_file:file rw_file_perms;
+allow system_app proc_gestures_item_file:file rw_file_perms;
+#wangyan@wind-mobi.com add Feature #4912 20171129 end
+
+#add by lizusheng@wind-mobi.com 20171110 start
+allow system_app persist_wind_prop:property_service {set};
+#add by lizusheng@wind-mobi.com 20171110 end
+
+#add by yinlili@wind-mobi.com 20171117 -s for feature#5698
+allow system_app cache_file:dir { write create add_name remove_name search };
+allow system_app cache_file:file { write create open append unlink };
+allow system_app ro_deviceid_prop:file { read };
+#add by yinlili@wind-mobi.com 20171117 -e for feature#5698
+
+#add by lizusheng@wind-mobi.com 20171110
+allow system_app dvt_isdbt:chr_file {read write ioctl open};
+
+#xiongshigui@wind-mobi.com 20171019 add begin
+allow system_app factory_data_file:dir { write add_name search };
+allow system_app factory_data_file:file { read open write create getattr setattr };
+allow system_app demoapp_file:dir { search read write open getattr add_name };
+allow system_app demoapp_file:file { read write open getattr setattr execute create };
+allow system_app asusfw_file:dir { search };
+allow system_app asusfw_file:file { read open getattr };
+allow system_app proc_proinfo:file { read open getattr write };
+#xiongshigui@wind-mobi.com 20171019 add end
+
+#zhangyanbin@wind-mobi.com 20171023 add for user debug start
+allow system_app persist_debug_state_prop:property_service { set };
+allow system_app persist_debug_state_prop:file { read open getattr};
+#zhangyanbin@wind-mobi.com 20171023 add for user debug end
+#zhangyanbin@wind-mobi.com 20171129 add for asus start
+allow system_app persist_asus_prop:property_service *;
+allow system_app persist_asus_prop:file { read open getattr };
+#zhangyanbin@wind-mobi.com 20171129 add for asus end
+
+#chenyangqing@wind-mobi.com 20171210 add for voucher key begin
+allow system_app voucher_prop:file { read open getattr};
+#chenyangqing@wind-mobi.com 20171210 add for voucher key end
+
+#sunhuihui@wind-mobi.com begin
+allow system_app btmac_prop:file { read open getattr };
+#sunhuihui@wind-mobi.com end
+
+#add by zuozhuang@wind-mobi.com 2018-1-10 begin
+allow system_app wind_test_prop:property_service { set };
+allow system_app wind_test_prop:file r_file_perms;
+#add by zuozhuang@wind-mobi.com 2018-1-10 end
+
+

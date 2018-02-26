@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="def_fm_special_carrier_enabled">false</bool>
+
+    <bool name="config_manual_lcd_test">true</bool>
+    <bool name="config_touch_button_has_backlight">false</bool>
+    <bool name="config_double_mic_support">true</bool>
+    <bool name="config_show_battery_elec_support">true</bool>
+    <bool name="config_three_color_led_orange_support">true</bool>
+    <bool name="config_three_color_led_bule_support">false</bool>
+    <bool name="config_display_root_info">false</bool>
+    <bool name="config_magneticfield_sensor_support_gyroscope">false</bool>
+    <bool name="config_has_recent_apps_key">false</bool>
+    <bool name="config_has_home_key">false</bool>
+    <bool name="config_has_navigation_bar">true</bool>
+    <bool name="config_disable_vitual_key">true</bool>
+    <integer name="config_tp_test_rect_section_width">18</integer>
+    <integer name="config_tp_test_rect_section_height">28</integer>
+    <bool name="config_tp_test_has_slash">false</bool>
+    <bool name="config_asus_save_test_results_to_file">false</bool>
+    <bool name="config_asus_customize_test_error_code">false</bool>
+    <bool name="config_single_sim">false</bool>
+    <bool name="config_has_meid">true</bool>
+    <bool name="config_apk_adapt_for_cmccclb">true</bool>
+    <integer name="camera_test_type">3</integer>
+    <bool name="config_has_fingerprint">true</bool>
+    <bool name="config_has_front_flash">true</bool>
+    <bool name="config_has_backsub_flash">false</bool>
+    <string-array name="emode_pac_flag_keys" translatable="false">
+        <item>"emode_pac_flag_battery"</item>
+        <item>"emode_pac_flag_lcd"</item>
+        <item>"emode_pac_flag_vibrator"</item>
+        <item>"emode_pac_flag_backlight"</item>
+        <item>"emode_pac_flag_led"</item>
+        <item>"emode_pac_flag_sdcard"</item>
+   <!-- <item>"emode_pac_flag_audio"</item>
+        <item>"emode_pac_flag_audioloop"</item> -->
+        <item>"emode_pac_flag_memory"</item>
+        <item>"emode_pac_flag_storage"</item>
+        <item>"emode_pac_flag_key"</item>
+        <item>"emode_pac_flag_bt"</item>
+        <item>"emode_pac_flag_gps"</item>
+        <item>"emode_pac_flag_tp"</item>
+        <item>"emode_pac_flag_fm"</item>
+        <item>"emode_pac_flag_wifi"</item>
+        <item>"emode_pac_flag_flashlight"</item>
+        <item>"emode_pac_flag_front_camera"</item>
+        <item>"emode_pac_flag_back_camera"</item>
+		<item>"emode_pac_flag_back2_camera"</item>
+        <item>"emode_pac_flag_gsensor"</item>
+        <item>"emode_pac_flag_compass"</item>
+        <item>"emode_pac_flag_gyoscope"</item>
+        <item>"emode_pac_flag_proximity"</item>
+        <item>"emode_pac_flag_light"</item>
+        <item>"emode_pac_flag_hook"</item>
+        <item>"emode_pac_flag_finger"</item>
+        <item>"emode_pac_flag_otg"</item>
+        <item>"emode_pac_flag_sim1"</item>
+	<item>"emode_pac_flag_dtv"</item>
+    </string-array>
+</resources>
